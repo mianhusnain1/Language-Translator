@@ -1,10 +1,10 @@
-
 // Make sure your Internet is Connected
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:translator/translator.dart';
-
 
 class TranslatorApp extends StatefulWidget {
   const TranslatorApp({super.key});
@@ -43,7 +43,7 @@ class _TranslatorAppState extends State<TranslatorApp> {
   String selectedvalue = 'English';
   String selectedvalue2 = 'Hindi';
   TextEditingController controller =
-  TextEditingController(text: 'How are you?');
+      TextEditingController(text: 'How are you?');
   final formkey = GlobalKey<FormState>();
   bool isloading = false;
   translate() async {
@@ -85,86 +85,67 @@ class _TranslatorAppState extends State<TranslatorApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 50, 46, 165),
-            )),
-        title: const Text(
-          'Translator App',
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 28),
-        ),
-      ),
-      backgroundColor: const Color.fromARGB(255, 87, 104, 254),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   flexibleSpace: Container(
+      //       decoration: const BoxDecoration(
+      //     color: Color.fromARGB(255, 50, 46, 165),
+      //   )),
+      //   title: const Text(
+      //     'Translator App',
+      //     style: TextStyle(
+      //         color: Colors.white, fontWeight: FontWeight.bold, fontSize: 28),
+      //   ),
+      // ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 40),
-                decoration: BoxDecoration(
-                    color: Colors.indigo.shade100,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('From'),
-                    const SizedBox(
-                      width: 100,
-                    ),
-                    DropdownButton(
-                      value: selectedvalue,
-                      focusColor: Colors.transparent,
-                      items: languages.map((lang) {
-                        return DropdownMenuItem(
-                          value: lang,
-                          child: Text(lang),
-                          onTap: () {
-                            if (lang == languages[0]) {
-                              from = languagescode[0];
-                            } else if (lang == languages[1]) {
-                              from = languagescode[1];
-                            } else if (lang == languages[2]) {
-                              from = languagescode[2];
-                            } else if (lang == languages[3]) {
-                              from = languagescode[3];
-                            } else if (lang == languages[4]) {
-                              from = languagescode[4];
-                            } else if (lang == languages[5]) {
-                              from = languagescode[5];
-                            } else if (lang == languages[6]) {
-                              from = languagescode[6];
-                            } else if (lang == languages[7]) {
-                              from = languagescode[7];
-                            } else if (lang == languages[8]) {
-                              from = languagescode[8];
-                            }
-                            setState(() {
-                              // print(lang);
-                              // print(from);
-                            });
-                          },
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        selectedvalue = value!;
-                      },
-                    )
-                  ],
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: [
+                Text(
+                  "Quari",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontFamily: 'Lato-Regular'),
                 ),
-              ),
+                Text(
+                  " Translate",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 251, 131, 91),
+                      fontSize: 17,
+                      fontFamily: 'Lato-Bold'),
+                ),
+              ],
+            ),
+          ),
+          const Text(
+            textAlign: TextAlign.center,
+            "Quick\nTranslation",
+            style: TextStyle(
+                color: Colors.black, fontSize: 35, fontFamily: 'Lato-Regular'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Stack(
+            children: [
               Container(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height *
+                      0.15, // Set minimum height to 100
+                ),
                 padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.all(20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                    color: Colors.blueGrey.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black)),
+                  color: const Color.fromARGB(255, 255, 235, 230),
+                  borderRadius: BorderRadius.circular(30),
+                ),
                 child: Form(
                   key: formkey,
                   child: TextFormField(
@@ -182,27 +163,115 @@ class _TranslatorAppState extends State<TranslatorApp> {
                         enabledBorder: InputBorder.none,
                         border: InputBorder.none,
                         errorBorder: InputBorder.none,
-                        errorStyle: TextStyle(color: Colors.white)),
+                        errorStyle: TextStyle(color: Colors.black)),
                     style: const TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                        fontFamily: 'Lato-Regular',
+                        fontSize: 15),
                   ),
                 ),
               ),
+              Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.04,
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 255, 235, 230),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(
+                            10,
+                          ),
+                          topRight: Radius.circular(10))),
+                  child: DropdownButton(
+                    underline: const SizedBox.shrink(),
+                    value: selectedvalue,
+                    focusColor: Colors.transparent,
+                    items: languages.map((lang) {
+                      return DropdownMenuItem(
+                        value: lang,
+                        child: Text(lang),
+                        onTap: () {
+                          if (lang == languages[0]) {
+                            from = languagescode[0];
+                          } else if (lang == languages[1]) {
+                            from = languagescode[1];
+                          } else if (lang == languages[2]) {
+                            from = languagescode[2];
+                          } else if (lang == languages[3]) {
+                            from = languagescode[3];
+                          } else if (lang == languages[4]) {
+                            from = languagescode[4];
+                          } else if (lang == languages[5]) {
+                            from = languagescode[5];
+                          } else if (lang == languages[6]) {
+                            from = languagescode[6];
+                          } else if (lang == languages[7]) {
+                            from = languagescode[7];
+                          } else if (lang == languages[8]) {
+                            from = languagescode[8];
+                          }
+                          setState(() {
+                            // print(lang);
+                            // print(from);
+                          });
+                        },
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      selectedvalue = value!;
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "Translate to",
+            style: TextStyle(
+                color: Colors.black, fontFamily: 'Lato-Regular', fontSize: 15),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Stack(
+            children: [
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 40),
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height *
+                      0.15, // Set minimum height to 100
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
-                    color: Colors.indigo.shade100,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('To'),
-                    const SizedBox(
-                      width: 100,
+                  color: const Color.fromARGB(255, 255, 235, 230),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: SelectableText(
+                      data,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontFamily: 'Lato-Regular'),
                     ),
-                    DropdownButton(
+                  ),
+                ),
+              ),
+              Center(
+                child: Container(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 255, 235, 230),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(
+                              10,
+                            ),
+                            topRight: Radius.circular(10))),
+                    child: DropdownButton(
+                      underline: const SizedBox.shrink(),
                       value: selectedvalue2,
                       focusColor: Colors.transparent,
                       items: languages.map((lang) {
@@ -230,8 +299,8 @@ class _TranslatorAppState extends State<TranslatorApp> {
                               to = languagescode[8];
                             }
                             setState(() {
-                              print(lang);
-                              print(from);
+                              // print(lang);
+                              // print(from);
                             });
                           },
                         );
@@ -239,42 +308,52 @@ class _TranslatorAppState extends State<TranslatorApp> {
                       onChanged: (value) {
                         selectedvalue2 = value!;
                       },
-                    )
-                  ],
-                ),
+                    )),
               ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Colors.blueGrey.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.black)),
-                child: Center(
-                  child: SelectableText(
-                    data,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+              Positioned(
+                right: 30,
+                bottom: 10,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.height * 0.05,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(35)),
+                  child: IconButton(
+                      iconSize: 20, onPressed: () {}, icon: Icon(Icons.copy)),
                 ),
-              ),
-              ElevatedButton(
-                  onPressed: translate,
-                  style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStatePropertyAll(Colors.indigo.shade900),
-                      fixedSize: const MaterialStatePropertyAll(Size(300, 45))),
-                  child:isloading?const SizedBox.square(
-                    dimension: 20,
-                    child: CircularProgressIndicator(color: Colors.white,),
-                  ): const Text('Translate')),
-              const SizedBox(
-                height: 30,
               )
             ],
-          )),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              onPressed: translate,
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Color.fromARGB(255, 251, 131, 91),
+                  ),
+                  fixedSize: MaterialStatePropertyAll(Size(300, 45))),
+              child: isloading
+                  ? const SizedBox.square(
+                      dimension: 20,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    )
+                  : const Text(
+                      'Translate',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Lato-Bold',
+                          fontSize: 15),
+                    )),
+          const SizedBox(
+            height: 30,
+          )
+        ],
+      )),
     );
   }
 }
