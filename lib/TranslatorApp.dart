@@ -1,9 +1,7 @@
 // Make sure your Internet is Connected
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:translator/translator.dart';
 
 class TranslatorApp extends StatefulWidget {
@@ -38,15 +36,18 @@ class _TranslatorAppState extends State<TranslatorApp> {
   ];
   final translator = GoogleTranslator();
   String from = 'en';
-  String to = 'hi';
-  String data = 'आप कैसे हैं?';
+  String to = 'ur';
+  String data = 'آپ کیسے ہیں';
   String selectedvalue = 'English';
-  String selectedvalue2 = 'Hindi';
+  String selectedvalue2 = 'Urdu';
   TextEditingController controller =
       TextEditingController(text: 'How are you?');
   final formkey = GlobalKey<FormState>();
   bool isloading = false;
   translate() async {
+    setState(() {
+      isloading = true;
+    });
     try {
       if (formkey.currentState!.validate()) {
         await translator
@@ -108,16 +109,16 @@ class _TranslatorAppState extends State<TranslatorApp> {
             child: Row(
               children: [
                 Text(
-                  "Quari",
+                  "Trans",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontFamily: 'Lato-Regular'),
                 ),
                 Text(
-                  " Translate",
+                  "Loom",
                   style: TextStyle(
-                      color: Color.fromARGB(255, 251, 131, 91),
+                      color: Color(0xFFFB835B),
                       fontSize: 17,
                       fontFamily: 'Lato-Bold'),
                 ),
@@ -310,19 +311,19 @@ class _TranslatorAppState extends State<TranslatorApp> {
                       },
                     )),
               ),
-              Positioned(
-                right: 30,
-                bottom: 10,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  width: MediaQuery.of(context).size.height * 0.05,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(35)),
-                  child: IconButton(
-                      iconSize: 20, onPressed: () {}, icon: Icon(Icons.copy)),
-                ),
-              )
+              // Positioned(
+              //   right: 30,
+              //   bottom: 10,
+              //   child: Container(
+              //     height: MediaQuery.of(context).size.height * 0.05,
+              //     width: MediaQuery.of(context).size.height * 0.05,
+              //     decoration: BoxDecoration(
+              //         color: Colors.white,
+              //         borderRadius: BorderRadius.circular(35)),
+              //     child: IconButton(
+              //         iconSize: 20, onPressed: () {}, icon: Icon(Icons.copy)),
+              //   ),
+              // )
             ],
           ),
           const SizedBox(
